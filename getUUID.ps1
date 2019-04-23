@@ -1,5 +1,14 @@
 #Author: Christopher Dalyan Sparrowgrove
 
+#Variables 
+$getUUID = (Get-CimInstance -Class Win32_ComputerSystemProduct).UUID
+$getGUID = (Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Cryptography -Name MachineGuid).MachineGuid
+$getMachineName =  $env:computername
+$getSerialNumber = wmic bios get serialnumber
+$getCurrentUser = whoami
+$fileType = ".txt" #File Format to save data output
+
+#Author Notes on Output File
 $output = "***************************************************************"
 Write-Output $output  | Out-File -FilePath $getMachineName$fileType 
 $output = "*           Script Author: Christopher Sparrowgrove           *"
@@ -10,14 +19,6 @@ $output = "***************************************************************"
 Write-Output $output  | Out-File -FilePath $getMachineName$fileType  -append
 $output = " "
 Write-Output $output  | Out-File -FilePath $getMachineName$fileType  -append
-
-#Variables 
-$getUUID = (Get-CimInstance -Class Win32_ComputerSystemProduct).UUID
-$getGUID = (Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Cryptography -Name MachineGuid).MachineGuid
-$getMachineName =  $env:computername
-$getSerialNumber = wmic bios get serialnumber
-$getCurrentUser = whoami
-$fileType = ".txt" #File Format to save data output
 
 #Get the UUID and output to the file
 $output = "UUID: "
